@@ -15,3 +15,13 @@ def find_source_files(
             source_files.append(str(file.relative_to(path)))
 
     return source_files
+
+def count_by_extension(files: list[str]) -> dict[str, int]:
+    count_result : dict[str,int] = {}
+
+    for file in files:
+        if(Path(file).suffix in count_result):
+            count_result[Path(file).suffix] += 1
+        else:
+            count_result[Path(file).suffix] = 1
+    return count_result

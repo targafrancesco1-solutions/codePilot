@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from scanner import find_source_files
+from scanner import find_source_files, count_by_extension
 
 
 def get_project_name():
@@ -12,22 +12,16 @@ def main():
     
     name = get_project_name()
     version = get_version()
-    file_count = get_file_count()
 
 
     print(name)
     print("version: " + version)
-    print("Files: " + str(file_count))
-    print(find_source_files(Path("."),extensions))
+    files = find_source_files(Path("."),extensions)
+    print(count_by_extension(files))
 
 
 def get_version() -> str:
     return "0.1"
-
-
-def get_file_count() -> int:
-    return 10
-
 
 
 
