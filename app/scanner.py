@@ -12,6 +12,6 @@ def find_source_files(
             continue
 
         if file.is_file() and file.suffix in extensions:
-            source_files.append(str(file))
+            source_files.append(str(file.relative_to(path)))
 
     return source_files
