@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
 
+import git_utils
 import scanner
 
 
@@ -20,8 +21,24 @@ def main():
     validate_path(project_path)
     files = scanner.find_source_files(project_path,extensions)
     print(scanner.count_by_extension(files))
+    print("let's check if there are any changes pending for git...")
+    status = git_utils.get_git_status(project_path)
+
+    if status != "":
+        print("there is/are the following pending:")
+        print(status)
+    else:
+        print("The working tree is clean")
+
+    print(git_utils.get_changed_files(project_path))
 
 
+
+
+
+
+
+#Utilities
 def get_version() -> str:
     return "0.1"
 
